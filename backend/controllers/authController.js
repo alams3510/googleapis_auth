@@ -6,9 +6,7 @@ const jwt = require("jsonwebtoken");
 const googleLogin = async (req, res) => {
   try {
     const { code } = req.query;
-    console.log("code", code);
     const responseToken = await oauth2client.getToken(code);
-    console.log("accessToken", responseToken.tokens.access_token);
     oauth2client.setCredentials(responseToken.tokens);
     const userRes = await axios.get(
       `https://www.googleapis.com/oauth2/v3/userinfo?access_token=${responseToken.tokens.access_token}`
