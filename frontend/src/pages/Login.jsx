@@ -8,7 +8,10 @@ const Login = () => {
   const responseGoogle = async (data) => {
     try {
       if (data["code"]) {
+        console.log("code", data["code"]);
         const result = await googleAuthApi(data.code);
+        console.log("result", result);
+
         const { email, name, image } = result.data.user;
         const token = result.data.token;
         const obj = { email, name, token, image };
